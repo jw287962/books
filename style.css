@@ -41,3 +41,21 @@ label{
     display: inline-block;
     width: 65px;
 }
+
+button{
+    width: 70px;
+    border: none;
+}
+
+input[type='submit'],button{
+    border-radius: 15px;
+    background-color: white;
+   
+}
+input[type='submit']{
+    width: 100px;
+}
+button:active{
+  
+    box-shadow: 2px 2px 5px black;
+}

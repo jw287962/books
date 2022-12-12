@@ -63,37 +63,35 @@ function haveRead(read){
     };
 }
 
-//adds to Library and to Table
+//adds to Library
 function addBookToLibrary(myLibrary,book){
-    const table = document.getElementById("books");
-
-
     myLibrary.push(book);
+
+    updateTable(myLibrary,book);
+}
+
+//Adds library to table in html
+function updateTable(library,book){
+    const table = document.getElementById("books");
     var array =  Object.values(book);
+
     const newTableRow =   document.createElement("tr");
- 
-    
+    const newTableData =   document.createElement("td");
+    const newButtonText = document.createTextNode('Delete');
+    var newButton = document.createElement('button');
+    //need to add delete button to table
     array.forEach(element => {
-     
-      
+         
         const newTableData =   document.createElement("td");
         const tableRowText = document.createTextNode(element);
         newTableData.appendChild(tableRowText);
 
         newTableRow.appendChild(newTableData);
-
    
     });
+    newButton.appendChild(newButtonText);
+    newTableData.appendChild(newButton);
+    newTableRow.appendChild(newTableData)
     table.appendChild(newTableRow);
-    
-
-   
-   
-}
-
-//Adds library to table in html
-function updateTable(library){
-   
-
 
 }
