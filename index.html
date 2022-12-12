@@ -20,7 +20,7 @@
       
     </table>
 
-    <form > <h3>Add Book</h3>
+    <form id="submitNewBook"> <h3>Add Book</h3>
         <p>
             <label for="title">Title</label>
             <input type="text" id="title" name="title">
@@ -38,14 +38,14 @@
       
             <fieldset>
                 <legend>Have you read the book?</legend>
-                <input type="radio" name="read"  id="read" value="read">
+                <input type="radio" name="read"  id="read" value="true">
                 <label for="read">Read</label>
-                <input type="radio" name="read" id="notread" value="notread">
+                <input type="radio" name="read" id="notread" value="false">
                 <label for="notread" >Not Read</label>
             </fieldset>
       
 
-        <p><input type="submit"></p>
+        <p><input type="submit" value="Add Book" ></p>
     </form>
 </body>
 </html>
