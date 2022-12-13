@@ -1,6 +1,7 @@
 body{
     margin: 0px;
     justify-items: center;
+    background-color: rgb(242, 252, 255);
 }
 /* header */
 .header{
@@ -8,17 +9,21 @@ body{
    grid-column: 1 / -1;
    width: 100vw;
    font-size: 50px;
-
+   
 }
 
 .header a{
     padding: 10px;
     display:grid;
     text-decoration: none;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-weight: 900;
-    background-color: rgb(88, 88, 88);
+    background-color: rgb(255, 255, 255);
     justify-items: center;
+    border: 1px solid white;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0.3em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+    
 }
 
 
@@ -107,7 +112,9 @@ tr:nth-child(2n){
 
 
 
-
+table{
+    background-color: white;
+}
 
 
 
