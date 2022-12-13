@@ -29,7 +29,8 @@ addBookToLibrary(myLibrary,coilingDragon);
 addBookToLibrary(myLibrary,RangersApprentice);
 
 const addNewButton = document.getElementById('submitNewBook');
-
+let deleteButton = document.querySelectorAll('button');
+removeAll(deleteButton);
 // await click of add book
 addNewButton.addEventListener('submit', e => {
     var title = document.getElementById("title").value;
@@ -40,41 +41,45 @@ addNewButton.addEventListener('submit', e => {
     hasRead = haveRead(hasRead);
     var newBook = new Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
+   deleteButton = document.querySelectorAll('button');
+   removeAll(deleteButton);
     event.preventDefault();
 });
 
 
 
-const deleteButton = document.querySelectorAll('button');
 
-    for (const deleteButtons of deleteButton) 
+function removeAll(deleteButton){
+   for (const deleteButtons of deleteButton) 
     {
-        
+    
             deleteButtons.addEventListener('click',e =>{
-           var bookTitleRemoval =  e.composedPath()[2].firstChild.textContent;
-            removeFromLibrary(myLibrary,bookTitleRemoval);
+           var bookTitle =  e.composedPath()[2].firstChild.textContent;
+           var bookAuthor =  e.composedPath()[2].firstChild.nextSibling.textContent;
+
+            removeFromLibrary(myLibrary,bookTitle,bookAuthor);
 
             e.composedPath()[2].remove()
 
                 event.preventDefault();
                 });
         }
-
+    }
 
 
 
 
 
 // Funcitons Called
-function removeFromLibrary(myLibrary,bookTitle){
+function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
     var count = 0; 
     for (const books of myLibrary) { 
-      
-        if(books.title == bookTitle){
+    
+        if(books.title === bookTitle && books.author === bookAuthor){
             myLibrary.splice(count,count+1);
-         
+            console.log('true');
         };
-
+     
             count++;
     }
     event.preventDefault();
