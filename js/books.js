@@ -23,10 +23,24 @@ var Buttons = document.querySelectorAll('button');
 var hasSubmit = false;
 let clickButton = document.querySelectorAll('button');
 
+const formButton = document.querySelector('.toggleform');
+
     findClickedButton();
+    var toggle = false;
+formButton.addEventListener('click', e =>{
+    const form = document.querySelector('form');
+  
+    if(!toggle){
+    form.setAttribute('id','active');
+    toggle=true;
+    }
+    else{
+        form.removeAttribute('id','active');
+        toggle = false;
+    }
+});
 
 // await click of add book
-
 
 addNewButton.addEventListener('submit', e => {
     //gets form data
