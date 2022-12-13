@@ -39,14 +39,15 @@ form{
    align-items: center;
     border: 1px solid rgb(189, 189, 189);
     margin: 20px;
-    position: absolute;
+    position: fixed;
     left: 0px;
+    bottom: 15px;
     background-color: rgb(236, 226, 213);
     opacity: 0.3;
     padding: 20px;
     
 }   
-form:hover{
+form:hover, form div{
     opacity: 1;
    
     width: max-content;
