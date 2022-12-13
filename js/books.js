@@ -75,11 +75,12 @@ function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
     var count = 0; 
     for (const books of myLibrary) { 
     
-        if(books.title === bookTitle && books.author === bookAuthor){
-            myLibrary.splice(count,count+1);
+        if(books.title === bookTitle){
+        if(books.author === bookAuthor){
+            myLibrary.splice(count,1);
             console.log('true');
         };
-     
+    }
             count++;
     }
     event.preventDefault();
