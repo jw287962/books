@@ -1,12 +1,19 @@
 
 
+Book.prototype.toggleRead = function(){
+if(this.read === 'Read') this.read = 'Not Read';
+else if(this.read === 'Not Read') this.read = 'Read';
 
+}
 
 let myLibrary =[];
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 const coilingDragon = new Book('Coiling Dragon', 'I Eat Tomato', 1000, true);
 const RangersApprentice = new Book('Rangers Apprentice', 'John Flanagan', 352, true);
+
+
+
 addBookToLibrary(myLibrary,theHobbit);
 addBookToLibrary(myLibrary,coilingDragon);
 addBookToLibrary(myLibrary,RangersApprentice);
@@ -49,7 +56,7 @@ for (const clickButtons of clickButton)  {
     {
  
         deleteButton(clickButtons,e);
-        toggleReadButton(clickButtons,e);
+        toggleReadButton(clickButtons,e,myLibrary);
     };
 
 //    checks if an event has an eventlistener by adding an ID to it when it does
@@ -80,16 +87,32 @@ function deleteButton(clickButtons,e){
            
     }
     
-function toggleReadButton(clickButtons,e){
+function toggleReadButton(clickButtons,e,myLibrary){
   
-               
+    const bookTitle = clickButtons.parentElement.parentElement.firstChild.textContent;
+    const bookAuthor = clickButtons.parentElement.parentElement.firstChild.nextSibling.textContent;  
    if(clickButtons.textContent.includes('Read')){
-                        console.log(clickButtons);
-            if(clickButtons.textContent === 'Read'){
-                clickButtons.textContent = 'Not Read';
+                        
+            
+            
+              
+           var count = 0;
+            for (const books of myLibrary) { 
+                if(books.title === bookTitle && books.author === bookAuthor){
+                  myLibrary[count].toggleRead();
+                   }
+                if(clickButtons.textContent === 'Read'){
+                    clickButtons.textContent = 'Not Read';
+               
+               
             }else if(clickButtons.textContent === 'Not Read'){
                 clickButtons.textContent = 'Read';
+
             }
+            
+            count++
+            }
+           
 
         }
         
