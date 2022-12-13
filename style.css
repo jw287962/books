@@ -1,39 +1,57 @@
-
-
-
-th,td{
-    border: 2px solid rgb(116, 116, 116);
-    padding: 15px;
-  
+body{
+    margin: 0px;
+    justify-items: center;
+}
+/* header */
+.header{
+    display: grid;
+   grid-column: 1 / -1;
+   width: 100vw;
+   font-size: 50px;
 
 }
+
+.header a{
+    padding: 10px;
+    display:grid;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-weight: 900;
+    background-color: rgb(88, 88, 88);
+    justify-items: center;
+}
+
+
+
+
 table{
    border-collapse: collapse;
     text-align: center;
   
+
 }
 
-
-body{
-    display: grid;
-    justify-content: center;
-}
-h1{
-    text-align: center;
-}
-
-tr:nth-child(2n){
-    background-color: rgb(211, 211, 211);
-}
-
-
+/* form */
 form{
-    margin-top: 20px;
+  
     display: flex;
     flex-direction: column;
    align-items: center;
-    border: 1px solid rgb(189, 189, 189)
+    border: 1px solid rgb(189, 189, 189);
+    margin: 20px;
+    position: absolute;
+    left: 0px;
+    background-color: rgb(236, 226, 213);
+    opacity: 0.3;
+    padding: 20px;
+    
+}   
+form:hover{
+    opacity: 1;
+   
+    width: max-content;
 }
+
 label + input{
     margin-bottom: 10px;
 }
@@ -41,20 +59,62 @@ label{
     display: inline-block;
     width: 65px;
 }
+/* inputs for forms */
+input[type='text'],input[type='number']{
+ width: 120px;
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+}
+input[type='submit'],button{
+    border-radius: 15px;
+    background-color: white;
+    
+   
+}
+input[type='submit']{
+    width: 100px;
+}
+
+
+/* library  */
+.body, .formbody,.library{
+    grid-column: 2/3;
+    
+}
+th,td{
+    border: 2px solid rgb(116, 116, 116);
+    padding: 15px;
+  
+
+}
+
+body{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    justify-content: center;
+}
+
+h1,p{
+    text-align: center;
+}
+
+tr:nth-child(2n){
+    background-color: rgb(224, 224, 224);
+}
+
+
+
+
+
+
 
 button{
     width: 70px;
     border: none;
 }
 
-input[type='submit'],button{
-    border-radius: 15px;
-    background-color: white;
-   
-}
-input[type='submit']{
-    width: 100px;
-}
 button:active{
   
     box-shadow: 2px 2px 5px black;
