@@ -8,6 +8,7 @@ body{
     margin: 0px;
     justify-items: center;
     background-color: rgb(209, 239, 248);
+    min-height: 300px;
 }
 /* header */
 .header{
@@ -53,10 +54,10 @@ form{
     position: fixed;
     left: 0px;
     bottom: 15px;
-    background-color: rgb(236, 226, 213);
-    opacity: 0.3;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.1;
     padding: 20px;
-    
+    border-radius: 8px;
 }   
 form:hover{
         opacity: 1;
