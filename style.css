@@ -114,6 +114,7 @@ tr:nth-child(2n){
 button{
     width: 70px;
     border: none;
+    height: 25px;
 }
 
 button:active{

@@ -12,12 +12,17 @@ addBookToLibrary(myLibrary,coilingDragon);
 addBookToLibrary(myLibrary,RangersApprentice);
 
 const addNewButton = document.getElementById('submitNewBook');
-var clickButtons = document.querySelectorAll('button');
-removeRow(clickButtons);
-
+var Buttons = document.querySelectorAll('button');
+var hasSubmit = false;
+let clickButton = document.querySelectorAll('button');
+if(!hasSubmit){
+    findClickedButton();
+}
 // await click of add book
+
 addNewButton.addEventListener('submit', e => {
     //gets form data
+    hasSubmit = true;
     const title = document.getElementById("title").value;
   
     const author = document.getElementById("author").value;
@@ -27,19 +32,23 @@ addNewButton.addEventListener('submit', e => {
     const hasRead = haveRead(read);
     const newBook = new Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
-   clickButtons = document.querySelectorAll('button');
-   removeRow(clickButtons);
-    event.preventDefault();
+   clickButton = document.querySelectorAll('button');
+   findClickedButton();
+    e.preventDefault();
 });
+function findClickedButton(){
+for (const clickButtons of clickButton)  {
+        clickButtons.addEventListener('click',e =>{
+            console.log(e.composedPath()[2]);
+        deleteButton(clickButtons,e);
+        toggleReadButton(clickButtons,e);
+        });
+    }}
 
 
-
-
-function removeRow(clickButton){
-   for (const clickButtons of clickButton) 
-    {
-      
-                clickButtons.addEventListener('click',e =>{
+function deleteButton(clickButtons,e){
+   
+                    
                     if(clickButtons.textContent === 'Delete'){
                         const bookTitle =  e.composedPath()[2].firstChild.textContent;
                         const bookAuthor =  e.composedPath()[2].firstChild.nextSibling.textContent;
@@ -48,23 +57,28 @@ function removeRow(clickButton){
 
                     e.composedPath()[2].remove()
 
-                        event.preventDefault();
+                        e.preventDefault();
                     } 
-                    else if(clickButtons.textContent.includes('Read')){
-                        if(clickButtons.textContent === 'Read'){
-                            clickButtons.textContent = 'Not Read';
-                        }else{
-                            clickButtons.textContent = 'Read';
-                        }
-                
-                    }
-                
-                });
+                    
+              
             
            
     }
-    }
+    
+function toggleReadButton(clickButtons,e){
+  
+               
+   if(clickButtons.textContent.includes('Read')){
+                        
+            if(clickButtons.textContent === 'Read'){
+                clickButtons.textContent = 'Not Read';
+            }else if(clickButtons.textContent === 'Not Read'){
+                clickButtons.textContent = 'Read';
+            }
 
+        }
+        
+    }
 
 
 
