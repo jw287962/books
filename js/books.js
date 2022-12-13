@@ -1,8 +1,8 @@
 
 
 Book.prototype.toggleRead = function(){
-if(this.read === 'Read') this.read = 'Not Read';
-else if(this.read === 'Not Read') this.read = 'Read';
+if(this.read === 'READ') this.read = 'NOT READ';
+else if(this.read === 'NOT READ') this.read = 'READ';
 
 }
 
@@ -105,7 +105,7 @@ function toggleReadButton(clickButtons,e,myLibrary){
   
     const bookTitle = clickButtons.parentElement.parentElement.firstChild.textContent;
     const bookAuthor = clickButtons.parentElement.parentElement.firstChild.nextSibling.textContent;  
-   if(clickButtons.textContent.includes('Read')){
+   if(clickButtons.textContent.includes('READ')){
                         
             
             
@@ -115,11 +115,11 @@ function toggleReadButton(clickButtons,e,myLibrary){
                 if(books.title === bookTitle && books.author === bookAuthor){
                   myLibrary[count].toggleRead();
                    }
-                if(clickButtons.textContent === 'Read'){
-                    clickButtons.textContent = 'Not Read';
+                if(clickButtons.textContent === 'READ'){
+                    clickButtons.textContent = 'NOT READ';
                
                
-            }else if(clickButtons.textContent === 'Not Read'){
+            }else if(clickButtons.textContent === 'NOT READ'){
                 clickButtons.textContent = 'Read';
 
             }
@@ -163,9 +163,9 @@ function Book(title, author, pages,read){
 
 
 function haveRead(read){
-    if(read === false){ return 'Not Read';}
+    if(read === false){ return 'NOT READ';}
     else {
-     return 'Read';
+     return 'READ';
     };
 }
 
@@ -184,13 +184,14 @@ function updateTable(library,book){
     const newTableRow =   document.createElement("tr");
     //Only for delete button
     const newTableData =   document.createElement("td");
-    const newButtonText = document.createTextNode('Delete');
+    const newButtonText = document.createTextNode('DELETE');
     const deleteButton = document.createElement('button');
+    
     //array is the book. each element is added to the columns of a row
     array.forEach(bookDetail => {
         var toggleButton = document.createElement('button');
          //each col of the row is added. 
-         if(bookDetail.toString().includes('Read')){
+         if(bookDetail.toString().includes('READ')){
             const newTableData = document.createElement("td");
         var tableRowText = document.createTextNode(bookDetail);
         toggleButton.appendChild(tableRowText);
@@ -209,7 +210,7 @@ function updateTable(library,book){
     newTableData.appendChild(deleteButton);
     newTableRow.appendChild(newTableData)
     table.appendChild(newTableRow);
-
+    deleteButton.setAttribute('class','delete');
 }
 
 

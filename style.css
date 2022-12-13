@@ -115,7 +115,7 @@ fieldset{
     
 }
 input[type='submit'],button{
-    border-radius: 15px;
+    border-radius: 6px;
     background-color: white;
     
    
@@ -161,9 +161,11 @@ table{
 
 
  td >button{
-    width: 80px;
-    border: 1px solid gray;
+    width: 90px;
+    border: 2px solid gray;
     padding: 7px;
+    font-weight: bold;
+    
 }
 
 button:active{
@@ -172,3 +174,6 @@ button:active{
 }
 
 
+.delete{
+    background-color: rgb(255, 94, 94);
+}
