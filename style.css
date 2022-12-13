@@ -47,7 +47,8 @@ display: grid;
 
 .header a, .login, .toggleform{
     font-weight: bold;
-  
+    border: none;
+    padding: 10px;
     justify-items: center;
    
 }
@@ -159,9 +160,9 @@ table{
 
 
 
-button{
+ td >button{
     width: 80px;
-    border: none;
+    border: 1px solid gray;
     padding: 7px;
 }
 
