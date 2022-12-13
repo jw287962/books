@@ -45,6 +45,41 @@ addNewButton.addEventListener('submit', e => {
 
 
 
+const deleteButton = document.querySelectorAll('button');
+
+    for (const deleteButtons of deleteButton) 
+    {
+        
+            deleteButtons.addEventListener('click',e =>{
+           var bookTitleRemoval =  e.composedPath()[2].firstChild.textContent;
+            removeFromLibrary(myLibrary,bookTitleRemoval);
+
+            e.composedPath()[2].remove()
+
+                event.preventDefault();
+                });
+        }
+
+
+
+
+
+
+// Funcitons Called
+function removeFromLibrary(myLibrary,bookTitle){
+    var count = 0; 
+    for (const books of myLibrary) { 
+      
+        if(books.title == bookTitle){
+            myLibrary.splice(count,count+1);
+         
+        };
+
+            count++;
+    }
+    event.preventDefault();
+}
+
 
 function Book(title, author, pages,read){
     this.title = title;
@@ -95,3 +130,5 @@ function updateTable(library,book){
     table.appendChild(newTableRow);
 
 }
+
+
