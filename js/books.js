@@ -51,7 +51,11 @@ function removeRow(clickButton){
                         event.preventDefault();
                     } 
                     else if(clickButtons.textContent.includes('Read')){
-                        
+                        if(clickButtons.textContent === 'Read'){
+                            clickButtons.textContent = 'Not Read';
+                        }else{
+                            clickButtons.textContent = 'Read';
+                        }
                 
                     }
                 
