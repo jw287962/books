@@ -85,7 +85,7 @@ for (const clickButtons of clickButton)  {
 function deleteButton(clickButtons,e){
    
                     
-                    if(clickButtons.textContent === 'Delete'){
+                    if(clickButtons.textContent === 'DELETE'){
                         const bookTitle =  e.composedPath()[2].firstChild.textContent;
                         const bookAuthor =  e.composedPath()[2].firstChild.nextSibling.textContent;
 
@@ -120,7 +120,7 @@ function toggleReadButton(clickButtons,e,myLibrary){
                
                
             }else if(clickButtons.textContent === 'NOT READ'){
-                clickButtons.textContent = 'Read';
+                clickButtons.textContent = 'READ';
 
             }
             
