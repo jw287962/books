@@ -1,22 +1,5 @@
 
 
-Book.prototype.getTitle = function(){
-    return this.title;
-}
-
-Book.prototype.getAuthor = function(){
-    return this.author;
-}
-Book.prototype.getPages = function(){
-    return this.pages;
-}
-Book.prototype.hasRead = function(){
-    return this.read;
-}
-
-
-
-
 
 
 let myLibrary =[];
@@ -29,41 +12,53 @@ addBookToLibrary(myLibrary,coilingDragon);
 addBookToLibrary(myLibrary,RangersApprentice);
 
 const addNewButton = document.getElementById('submitNewBook');
-let deleteButton = document.querySelectorAll('button');
-removeAll(deleteButton);
+var clickButtons = document.querySelectorAll('button');
+removeRow(clickButtons);
+
 // await click of add book
 addNewButton.addEventListener('submit', e => {
-    var title = document.getElementById("title").value;
+    //gets form data
+    const title = document.getElementById("title").value;
   
-    var author = document.getElementById("author").value;
-    var pages = document.getElementById("pages").value;
-    var hasRead = document.getElementById("read").value;
-    hasRead = haveRead(hasRead);
-    var newBook = new Book(title,author,pages,hasRead);
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const read = document.getElementById("read").value;
+
+    const hasRead = haveRead(read);
+    const newBook = new Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
-   deleteButton = document.querySelectorAll('button');
-   removeAll(deleteButton);
+   clickButtons = document.querySelectorAll('button');
+   removeRow(clickButtons);
     event.preventDefault();
 });
 
 
 
 
-function removeAll(deleteButton){
-   for (const deleteButtons of deleteButton) 
+function removeRow(clickButton){
+   for (const clickButtons of clickButton) 
     {
-    
-            deleteButtons.addEventListener('click',e =>{
-           var bookTitle =  e.composedPath()[2].firstChild.textContent;
-           var bookAuthor =  e.composedPath()[2].firstChild.nextSibling.textContent;
+      
+                clickButtons.addEventListener('click',e =>{
+                    if(clickButtons.textContent === 'Delete'){
+                        const bookTitle =  e.composedPath()[2].firstChild.textContent;
+                        const bookAuthor =  e.composedPath()[2].firstChild.nextSibling.textContent;
 
-            removeFromLibrary(myLibrary,bookTitle,bookAuthor);
+                    removeFromLibrary(myLibrary,bookTitle,bookAuthor);
 
-            e.composedPath()[2].remove()
+                    e.composedPath()[2].remove()
 
-                event.preventDefault();
+                        event.preventDefault();
+                    } 
+                    else if(clickButtons.textContent.includes('Read')){
+                        
+                
+                    }
+                
                 });
-        }
+            
+           
+    }
     }
 
 
@@ -114,24 +109,34 @@ function addBookToLibrary(myLibrary,book){
 //Adds library to table in html
 function updateTable(library,book){
     const table = document.getElementById("books");
-    var array =  Object.values(book);
+    const array =  Object.values(book);
 
     const newTableRow =   document.createElement("tr");
+    //Only for delete button
     const newTableData =   document.createElement("td");
     const newButtonText = document.createTextNode('Delete');
-    var newButton = document.createElement('button');
-    //need to add delete button to table
-    array.forEach(element => {
-         
-        const newTableData =   document.createElement("td");
-        const tableRowText = document.createTextNode(element);
-        newTableData.appendChild(tableRowText);
-
+    const deleteButton = document.createElement('button');
+    //array is the book. each element is added to the columns of a row
+    array.forEach(bookDetail => {
+        var toggleButton = document.createElement('button');
+         //each col of the row is added. 
+         if(bookDetail.toString().includes('Read')){
+            const newTableData = document.createElement("td");
+        var tableRowText = document.createTextNode(bookDetail);
+        toggleButton.appendChild(tableRowText);
+        newTableData.appendChild(toggleButton);
         newTableRow.appendChild(newTableData);
+          
+        }else{
+        const newTableData = document.createElement("td");
+        var tableRowText = document.createTextNode(bookDetail);
+        newTableData.appendChild(tableRowText);
    
+        newTableRow.appendChild(newTableData);
+        }
     });
-    newButton.appendChild(newButtonText);
-    newTableData.appendChild(newButton);
+    deleteButton.appendChild(newButtonText);
+    newTableData.appendChild(deleteButton);
     newTableRow.appendChild(newTableData)
     table.appendChild(newTableRow);
 

@@ -47,8 +47,8 @@ form{
     padding: 20px;
     
 }   
-form:hover, form div{
-    opacity: 1;
+form:hover{
+        opacity: 1;
    
     width: max-content;
 }
