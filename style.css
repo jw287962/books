@@ -1,7 +1,13 @@
+@font-face {
+    font-family: Roboto;
+    src: url('./font/Roboto-Regular.ttf');
+}
+
 body{
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     margin: 0px;
     justify-items: center;
-    background-color: rgb(242, 252, 255);
+    background-color: rgb(209, 239, 248);
 }
 /* header */
 .header{
@@ -73,6 +79,14 @@ fieldset{
     display: flex;
     flex-direction: column;
 }
+
+.fieldradio,.fieldradio > label{
+
+  display: inline;
+ 
+    
+    
+}
 input[type='submit'],button{
     border-radius: 15px;
     background-color: white;
@@ -128,3 +142,5 @@ button:active{
   
     box-shadow: 2px 2px 5px black;
 }
+
+
