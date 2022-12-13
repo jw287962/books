@@ -52,13 +52,7 @@ for (const clickButtons of clickButton)  {
         toggleReadButton(clickButtons,e);
     };
 
-    // if(hasSubmit){
-      
-    //     clickButtons.removeEventListener('click', handleButtonClicks);
-        
-      
-    //     hasSubmit=false;
-    // }
+//    checks if an event has an eventlistener by adding an ID to it when it does
         if(!(clickButtons.id === 'added')){
         clickButtons.addEventListener('click', handleButtonClicks);
         }
