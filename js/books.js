@@ -15,10 +15,11 @@ const addNewButton = document.getElementById('submitNewBook');
 var Buttons = document.querySelectorAll('button');
 var hasSubmit = false;
 let clickButton = document.querySelectorAll('button');
-if(!hasSubmit){
+
     findClickedButton();
-}
+
 // await click of add book
+
 
 addNewButton.addEventListener('submit', e => {
     //gets form data
@@ -33,17 +34,37 @@ addNewButton.addEventListener('submit', e => {
     const newBook = new Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
    clickButton = document.querySelectorAll('button');
+  
    findClickedButton();
     e.preventDefault();
 });
+
+let hasEventListener = false;
+
 function findClickedButton(){
+   
 for (const clickButtons of clickButton)  {
-        clickButtons.addEventListener('click',e =>{
-            console.log(e.composedPath()[2]);
+
+    const handleButtonClicks = (e) =>
+    {
+ 
         deleteButton(clickButtons,e);
         toggleReadButton(clickButtons,e);
-        });
-    }}
+    };
+
+    // if(hasSubmit){
+      
+    //     clickButtons.removeEventListener('click', handleButtonClicks);
+        
+      
+    //     hasSubmit=false;
+    // }
+        if(!(clickButtons.id === 'added')){
+        clickButtons.addEventListener('click', handleButtonClicks);
+        }
+        clickButtons.setAttribute('id','added')
+    }
+}
 
 
 function deleteButton(clickButtons,e){
@@ -69,7 +90,7 @@ function toggleReadButton(clickButtons,e){
   
                
    if(clickButtons.textContent.includes('Read')){
-                        
+                        console.log(clickButtons);
             if(clickButtons.textContent === 'Read'){
                 clickButtons.textContent = 'Not Read';
             }else if(clickButtons.textContent === 'Not Read'){
