@@ -127,11 +127,11 @@ function toggleReadButton(clickButtons,e,myLibrary){
                   
                 if(clickButtons.textContent === 'READ'){
                     clickButtons.textContent = 'NOT READ';
-                    console.log('change to Not');
+                    
                
             }else if(clickButtons.textContent === 'NOT READ'){
                 clickButtons.textContent = 'READ';
-                console.log('change to Read');
+               
             }
             
             count++;
