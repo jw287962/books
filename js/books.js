@@ -8,9 +8,9 @@ else if(this.read === 'NOT READ') this.read = 'READ';
 
 let myLibrary =[];
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
-const coilingDragon = new Book('Coiling Dragon', 'I Eat Tomato', 1000, true);
-const RangersApprentice = new Book('Rangers Apprentice', 'John Flanagan', 352, true);
+const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'false');
+const coilingDragon = new Book('Coiling Dragon', 'I Eat Tomato', 1000, 'true');
+const RangersApprentice = new Book('Rangers Apprentice', 'John Flanagan', 352, 'true');
 
 
 
@@ -49,9 +49,10 @@ addNewButton.addEventListener('submit', e => {
   
     const author = document.getElementById("author").value;
     const pages = document.getElementById("pages").value;
-    const read = document.getElementById("read").value;
-
-    const hasRead = haveRead(read);
+    const read = document.getElementsByName("read");
+ 
+    const hasRead = checkRead(read);
+    console.log(hasRead);
     const newBook = new Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
    clickButton = document.querySelectorAll('button');
@@ -80,7 +81,19 @@ for (const clickButtons of clickButton)  {
         clickButtons.setAttribute('id','added')
     }
 }
+// radio button checked
+function checkRead(read){
+    for (const hasRead of read){
+      
+if(hasRead.checked){
+    return 'true';
+}
+    else{
+        return 'false';
+    }
+}
 
+}
 
 function deleteButton(clickButtons,e){
    
@@ -143,7 +156,7 @@ function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
         if(books.title === bookTitle){
         if(books.author === bookAuthor){
             myLibrary.splice(count,1);
-            console.log('true');
+            
         };
     }
             count++;
@@ -163,7 +176,7 @@ function Book(title, author, pages,read){
 
 
 function haveRead(read){
-    if(read === false){ return 'NOT READ';}
+    if(read === 'false'){ return 'NOT READ';}
     else {
      return 'READ';
     };
@@ -192,6 +205,7 @@ function updateTable(library,book){
         var toggleButton = document.createElement('button');
          //each col of the row is added. 
          if(bookDetail.toString().includes('READ')){
+            
             const newTableData = document.createElement("td");
         var tableRowText = document.createTextNode(bookDetail);
         toggleButton.appendChild(tableRowText);
