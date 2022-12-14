@@ -119,27 +119,24 @@ function toggleReadButton(clickButtons,e,myLibrary){
     const bookTitle = clickButtons.parentElement.parentElement.firstChild.textContent;
     const bookAuthor = clickButtons.parentElement.parentElement.firstChild.nextSibling.textContent;  
    if(clickButtons.textContent.includes('READ')){
-                        
-            
-            
-              
+    
            var count = 0;
             for (const books of myLibrary) { 
                 if(books.title === bookTitle && books.author === bookAuthor){
                   myLibrary[count].toggleRead();
-                   }
+                  
                 if(clickButtons.textContent === 'READ'){
                     clickButtons.textContent = 'NOT READ';
-               
+                    console.log('change to Not');
                
             }else if(clickButtons.textContent === 'NOT READ'){
                 clickButtons.textContent = 'READ';
-
+                console.log('change to Read');
             }
             
-            count++
+            count++;
             }
-           
+        }
 
         }
         
