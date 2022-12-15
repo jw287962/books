@@ -1,25 +1,69 @@
 
 
 function Book(titles, author, pages,read){
-    var book = Object.create(Book.proto);
-    book.title = titles;
-    book.author = author;
-        book.pages = pages;
-        book.read = haveRead(read);
-    return book;
+    //  read = haveRead(read);
+    //  const changeRead = (newReadState) =>{
+    //     read = newReadState;
+    //  };
+    
+    const setRead = () =>{
+       read = 'READ';   
+    }
+    const setNotRead = () =>{
+        read = 'NOT READ';
+    }
+     const getAuthor = () => {
+        return author ; 
+    };
+     const getTitle = () => {
+        return titles; 
+    };
+    const getRead = () =>{
+        return read;
+    }
+    const toggleRead = () => {
+            if(getRead() === 'READ'){ 
+                    setNotRead();
+                    console.log(read);
+                  return;
+                }
+            else if(getRead() === 'NOT READ'){
+                    setRead();
+                    console.log(read);
+                    return;
+            }
+              
+        }
+    return {titles,author,pages,read,getAuthor,getTitle,setRead,setNotRead};
 }
-Book.proto = {
-    toggleRead: function(){
-    if(this.read === 'READ') this.read = 'NOT READ';
-    else if(this.read === 'NOT READ') this.read = 'READ';
-    return this.read;
-    }}
+// const Book = (title, author, pages,read) => {
+//     var book =  Object.create(Book.proto);
+//        read = haveRead(read);
+//        book.title = title;
+//     book.author = author;
+//     book.pages = pages;
+//     book.read = read;
+//     // const {toggleRead} = Book.proto;
+//     // return Object.assign(book,{toggleRead});
+// return book;
+// };
+
+
+
+
+// Book.proto = {
+//     toggleRead: function(){
+       
+//     if(this.read === 'READ') this.read = 'NOT READ';
+//     else if(this.read === 'NOT READ') this.read = 'READ';
+//     return this.read;
+//     }};
 
 let myLibrary =[];
 
-const theHobbit = Book('The Hobbit', 'J.R.R. Tolkien', 295, 'false');
-const coilingDragon = Book('Coiling Dragon', 'I Eat Tomato', 1000, 'true');
-const RangersApprentice = Book('Rangers Apprentice', 'John Flanagan', 352, 'true');
+const theHobbit = Book('The Hobbit', 'J.R.R. Tolkien', 295, 'NOT READ');
+const coilingDragon = Book('Coiling Dragon', 'I Eat Tomato', 1000, 'READ');
+const RangersApprentice = Book('Rangers Apprentice', 'John Flanagan', 352, 'READ');
 
 
 
@@ -38,7 +82,7 @@ const formButton = document.querySelector('.toggleform');
     var toggle = false;
 formButton.addEventListener('click', e =>{
     const form = document.querySelector('form');
-  
+  //toggle form
     if(!toggle){
     form.setAttribute('id','active');
     toggle=true;
@@ -62,7 +106,7 @@ addNewButton.addEventListener('submit', e => {
  
     const hasRead = checkRead(read);
     console.log(hasRead);
-    const newBook = new Book(title,author,pages,hasRead);
+    const newBook =  Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
    clickButton = document.querySelectorAll('button');
   
@@ -95,10 +139,10 @@ function checkRead(read){
     for (const hasRead of read){
       
 if(hasRead.checked){
-    return 'true';
+    return 'READ';
 }
     else{
-        return 'false';
+        return 'NOT READ';
     }
 }
 
@@ -128,23 +172,26 @@ function toggleReadButton(clickButtons,e,myLibrary){
     const bookTitle = clickButtons.parentElement.parentElement.firstChild.textContent;
     const bookAuthor = clickButtons.parentElement.parentElement.firstChild.nextSibling.textContent;  
    if(clickButtons.textContent.includes('READ')){
-    
+   
            var count = 0;
             for (const books of myLibrary) { 
-                if(books.title === bookTitle && books.author === bookAuthor){
-                  myLibrary[count].toggleRead();
-                  
+               
+                if(books.getTitle() === bookTitle && books.getAuthor() === bookAuthor){
+                //   myLibrary[count].toggleRead();
+                // console.log(myLibrary[count]);
                 if(clickButtons.textContent === 'READ'){
                     clickButtons.textContent = 'NOT READ';
-                    
+                    myLibrary[count].read = 'NOT READ';
                
             }else if(clickButtons.textContent === 'NOT READ'){
                 clickButtons.textContent = 'READ';
+                myLibrary[count].read = 'READ';
                
             }
             
-            count++;
+            
             }
+            count++;
         }
 
         }
@@ -159,8 +206,8 @@ function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
     var count = 0; 
     for (const books of myLibrary) { 
     
-        if(books.title === bookTitle){
-        if(books.author === bookAuthor){
+        if(books.getTitle() === bookTitle){
+        if(books.getAuthor() === bookAuthor){
             myLibrary.splice(count,1);
             
         };
@@ -184,12 +231,12 @@ function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
 
 
 
-function haveRead(read){
-    if(read === 'false'){ return 'NOT READ';}
-    else {
-     return 'READ';
-    };
-}
+// function haveRead(read){
+//     if(read === 'false'){ return 'NOT READ';}
+//     else {
+//      return 'READ';
+//     };
+// }
 
 //adds to Library
 function addBookToLibrary(myLibrary,book){
@@ -214,7 +261,10 @@ function updateTable(library,book){
     array.forEach(bookDetail => {
         var toggleButton = document.createElement('button');
          //each col of the row is added. 
-         if(bookDetail.toString().includes('READ')){
+         if(typeof bookDetail === 'function'){
+                
+         }
+         else if(bookDetail.toString().includes('READ')){
             
             const newTableData = document.createElement("td");
         var tableRowText = document.createTextNode(bookDetail);
