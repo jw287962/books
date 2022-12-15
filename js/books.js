@@ -1,16 +1,21 @@
 
 
-function Book(titles, author, pages,read){
+function Book(titles, author, pages,reads){
     //  read = haveRead(read);
     //  const changeRead = (newReadState) =>{
     //     read = newReadState;
     //  };
-    
-    const setRead = () =>{
-       read = 'READ';   
-    }
-    const setNotRead = () =>{
-        read = 'NOT READ';
+ 
+    function setNotRead(read){
+
+            read.reads = 'NOT READ';
+       
+        }
+
+  
+   function setRead(read){
+   
+        read.reads = 'READ';
     }
      const getAuthor = () => {
         return author ; 
@@ -19,22 +24,25 @@ function Book(titles, author, pages,read){
         return titles; 
     };
     const getRead = () =>{
-        return read;
+        return reads;
     }
-    const toggleRead = () => {
-            if(getRead() === 'READ'){ 
-                    setNotRead();
-                    console.log(read);
-                  return;
+    function toggleRead(){
+        var holder = this;
+    
+            if(getRead() === 'READ'){
+                
+               setNotRead(holder);
+                
                 }
             else if(getRead() === 'NOT READ'){
-                    setRead();
-                    console.log(read);
-                    return;
+          
+                setRead(holder);
             }
               
         }
-    return {titles,author,pages,read,getAuthor,getTitle,setRead,setNotRead};
+    return {titles,author,pages,reads,getAuthor,getTitle,toggleRead};
+
+   
 }
 // const Book = (title, author, pages,read) => {
 //     var book =  Object.create(Book.proto);
@@ -177,15 +185,15 @@ function toggleReadButton(clickButtons,e,myLibrary){
             for (const books of myLibrary) { 
                
                 if(books.getTitle() === bookTitle && books.getAuthor() === bookAuthor){
-                //   myLibrary[count].toggleRead();
-                // console.log(myLibrary[count]);
+                  myLibrary[count].toggleRead();
+            
                 if(clickButtons.textContent === 'READ'){
                     clickButtons.textContent = 'NOT READ';
-                    myLibrary[count].read = 'NOT READ';
+                    
                
             }else if(clickButtons.textContent === 'NOT READ'){
                 clickButtons.textContent = 'READ';
-                myLibrary[count].read = 'READ';
+              
                
             }
             
