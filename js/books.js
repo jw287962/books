@@ -1,16 +1,25 @@
 
 
-Book.prototype.toggleRead = function(){
-if(this.read === 'READ') this.read = 'NOT READ';
-else if(this.read === 'NOT READ') this.read = 'READ';
-
+function Book(titles, author, pages,read){
+    var book = Object.create(Book.proto);
+    book.title = titles;
+    book.author = author;
+        book.pages = pages;
+        book.read = haveRead(read);
+    return book;
 }
+Book.proto = {
+    toggleRead: function(){
+    if(this.read === 'READ') this.read = 'NOT READ';
+    else if(this.read === 'NOT READ') this.read = 'READ';
+    return this.read;
+    }}
 
 let myLibrary =[];
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'false');
-const coilingDragon = new Book('Coiling Dragon', 'I Eat Tomato', 1000, 'true');
-const RangersApprentice = new Book('Rangers Apprentice', 'John Flanagan', 352, 'true');
+const theHobbit = Book('The Hobbit', 'J.R.R. Tolkien', 295, 'false');
+const coilingDragon = Book('Coiling Dragon', 'I Eat Tomato', 1000, 'true');
+const RangersApprentice = Book('Rangers Apprentice', 'John Flanagan', 352, 'true');
 
 
 
@@ -162,14 +171,17 @@ function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
 }
 
 
-function Book(title, author, pages,read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
+// function Book(title, author, pages,read){
+//     this.title = title;
+//     this.author = author;
+//     this.pages = pages;
     
   
-    this.read = haveRead(read);
-}
+//     this.read = haveRead(read);
+
+    
+// }
+
 
 
 function haveRead(read){
@@ -189,6 +201,7 @@ function addBookToLibrary(myLibrary,book){
 //Adds library to table in html
 function updateTable(library,book){
     const table = document.getElementById("books");
+   
     const array =  Object.values(book);
 
     const newTableRow =   document.createElement("tr");
