@@ -1,95 +1,62 @@
 
-// ~~~FUNCTION FACTORY ~~
-// function Book(titles, author, pages,reads){
-  
+
+function Book(titles, author, pages,reads){
+    //  read = haveRead(read);
+    //  const changeRead = (newReadState) =>{
+    //     read = newReadState;
+    //  };
  
-//     function setNotRead(read){
+    function setNotRead(read){
 
-//             read.reads = 'NOT READ';
-       
-//         }
-
-  
-//    function setRead(read){
-   
-//         read.reads = 'READ';
-//     }
-//      const getAuthor = () => {
-//         return author ; 
-//     };
-//      const getTitle = () => {
-//         return titles; 
-//     };
-//     const getRead = () =>{
-//         return reads;
-//     }
-//     function toggleRead(){
-//         var holder = this;
-    
-//             if(getRead() === 'READ'){
-                
-//                setNotRead(holder);
-                
-//                 }
-//             else if(getRead() === 'NOT READ'){
-          
-//                 setRead(holder);
-//             }
-              
-//         }
-//     return {titles,author,pages,reads,getAuthor,getTitle,toggleRead};
-
-   
-// }
-
-
-// CLASS PRACTICE 
-class Book{
-  constructor(titles, author, pages,reads){
-    this.titles = titles;
-    this.author = author;
-    this.pages = pages;
-    this.reads = reads;
-  }
- 
-      setNotRead(read){
-
-            this.reads = 'NOT READ';
+            read.reads = 'NOT READ';
        
         }
 
   
-     setRead(read){
+   function setRead(read){
    
-    this.reads = 'READ';
+        read.reads = 'READ';
     }
-     get getAuthor() {
-        return this.author ; 
+     const getAuthor = () => {
+        return author ; 
+    };
+     const getTitle = () => {
+        return titles; 
+    };
+    const getRead = () =>{
+        return reads;
     }
-     get getTitle() {
-        return this.titles; 
-    }
-    get getRead() {
-        return this.reads;
-    }
-     toggleRead(){
+    function toggleRead(){
         var holder = this;
     
-            if(this.getRead === 'READ'){
+            if(getRead() === 'READ'){
                 
-               this.setNotRead(holder);
+               setNotRead(holder);
                 
                 }
-            else if(this.getRead === 'NOT READ'){
+            else if(getRead() === 'NOT READ'){
           
-              this.setRead(holder);
+                setRead(holder);
             }
               
         }
-    // return {titles,author,pages,reads,getAuthor,getTitle,toggleRead};
+    return {titles,author,pages,reads,getAuthor,getTitle,toggleRead};
 
    
 }
+// const Book = (title, author, pages,read) => {
+//     var book =  Object.create(Book.proto);
+//        read = haveRead(read);
+//        book.title = title;
+//     book.author = author;
+//     book.pages = pages;
+//     book.read = read;
+//     // const {toggleRead} = Book.proto;
+//     // return Object.assign(book,{toggleRead});
+// return book;
+// };
+
+
 
 
 // Book.proto = {
@@ -102,9 +69,9 @@ class Book{
 
 let myLibrary =[];
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, 'NOT READ');
-const coilingDragon = new Book('Coiling Dragon', 'I Eat Tomato', 1000, 'READ');
-const RangersApprentice = new Book('Rangers Apprentice', 'John Flanagan', 352, 'READ');
+const theHobbit = Book('The Hobbit', 'J.R.R. Tolkien', 295, 'NOT READ');
+const coilingDragon = Book('Coiling Dragon', 'I Eat Tomato', 1000, 'READ');
+const RangersApprentice = Book('Rangers Apprentice', 'John Flanagan', 352, 'READ');
 
 
 
@@ -147,7 +114,7 @@ addNewButton.addEventListener('submit', e => {
  
     const hasRead = checkRead(read);
     console.log(hasRead);
-    const newBook = new Book(title,author,pages,hasRead);
+    const newBook =  Book(title,author,pages,hasRead);
    addBookToLibrary(myLibrary,newBook);
    clickButton = document.querySelectorAll('button');
   
@@ -217,7 +184,7 @@ function toggleReadButton(clickButtons,e,myLibrary){
            var count = 0;
             for (const books of myLibrary) { 
                
-                if(books.getTitle === bookTitle && books.getAuthor === bookAuthor){
+                if(books.getTitle() === bookTitle && books.getAuthor() === bookAuthor){
                   myLibrary[count].toggleRead();
             
                 if(clickButtons.textContent === 'READ'){
@@ -247,8 +214,8 @@ function removeFromLibrary(myLibrary,bookTitle,bookAuthor){
     var count = 0; 
     for (const books of myLibrary) { 
     
-        if(books.getTitle === bookTitle){
-        if(books.getAuthor === bookAuthor){
+        if(books.getTitle() === bookTitle){
+        if(books.getAuthor() === bookAuthor){
             myLibrary.splice(count,1);
             
         };
